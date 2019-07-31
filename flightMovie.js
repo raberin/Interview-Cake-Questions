@@ -37,8 +37,10 @@ function canTwoMoviesFillFlight(movieLengths, flightLength) {
   
     for (let i = 0; i < movieLengths.length; i++) {
       const firstMovieLength = movieLengths[i];
-  
+        
+      //Gets the length needs for the 2nd movie
       const matchingSecondMovieLength = flightLength - firstMovieLength;
+      //Checks if the 2nd movie length is in the set, if so, true
       if (movieLengthsSeen.has(matchingSecondMovieLength)) {
         return true;
       }
