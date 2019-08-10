@@ -64,3 +64,103 @@ let nonRepeat = arr => {
   }
   return "Theyre all doubles";
 };
+
+//Linked List
+// Single Linked List Class
+function LinkedListNode(value) {
+  this.value = value;
+  this.next = null;
+}
+
+let ll1 = new LinkedListNode(1);
+let ll2 = new LinkedListNode(2);
+let ll3 = new LinkedListNode(3);
+ll1.next = ll2;
+ll2.next = ll3;
+
+//Reverse a Linked List In place
+//O(n) - time // 0(1) - space
+let reverseLinkedListInPlace = headOfList => {
+  //Store variables for next, current, previous nodes
+  let currentNode = headOfList;
+  let previousNode = null;
+  let nextNode = null;
+
+  //As we loop down the list, it will stop once it makes it to null node
+  while (currentNode) {
+    //Make a pointer for next node before we change it
+    nextNode = currentNode.next;
+
+    //Change currentNode pointer to previousNode
+    currentNode.next = previousNode;
+
+    //Change previousNode to current
+    previousNode = currentNode;
+
+    //Jump to next node
+    currentNode = nextNode;
+
+    console.log(
+      `nextNode = ${nextNode}, previousNode = ${previousNode}, currentNode = ${currentNode}`
+    );
+  }
+  //Return previousNode because currentNode became null when out of loop
+  return previousNode;
+};
+
+//Length of Linked List
+let lengthOfLinkedList = headOfList => {
+  let count = 1;
+  let currentNode = headOfList;
+  if (currentNode.next === null) {
+    return 1;
+  } else {
+    while (currentNode !== null) {
+      if (currentNode.next === null) {
+        return count;
+      }
+      currentNode = currentNode.next;
+      count++;
+    }
+  }
+  return count;
+};
+
+//Search in Singly Linked List
+//receive a node
+let searchInLinkedList = (linkedList, val) => {
+  let currentNode = linkedList;
+  while (currentNode) {
+    if (currentNode === val) {
+      return true;
+    } else {
+      currentNode = currentNode.next;
+    }
+  }
+  return false;
+};
+
+//Loops through until currentNode === null
+let currentNode = ll3;
+while (currentNode) {
+  console.log(currentNode);
+  currentNode = currentNode.next;
+}
+
+//Find Middle Value of Linked List
+let middleValList = headOfList => {
+  let currentNode = headOfList;
+  //Grab halfway of the length of the list
+  let midLength = Math.floor(lengthOfLinkedList(headOfList) / 2);
+  console.log(midLength);
+
+  //Loop through until midlength
+  for (let i = 0; i <= midLength; i++) {
+    if (i === midLength) {
+      console.log(currentNode);
+      return currentNode;
+    } else {
+      currentNode = currentNode.next;
+    }
+  }
+};
